@@ -1,22 +1,38 @@
+package materia.models;
+
 public class Node {
+    private int value; // Propiedad privada que almacena el valor del nodo
+    private Node next; // Propiedad privada que almacena la referencia al siguiente nodo
 
+    // Constructor que inicializa el valor del nodo
     public Node(int value) {
-        //TODO Auto-generated constructor stub
+        this.value = value;
+        this.next = null; // Inicialmente, el siguiente nodo es nulo
     }
 
-    public void setNext(Node top) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setNext'");
-    }
-
+    // Getter para el valor del nodo
     public int getValue() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getValue'");
+        return value;
     }
 
+    // Setter para el valor del nodo
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    // Getter para el siguiente nodo
     public Node getNext() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getNext'");
+        return next;
     }
 
+    // Setter para el siguiente nodo
+    public void setNext(Node next) {
+        this.next = next;
+    }
+
+    // Método para representar el nodo como cadena de texto
+    @Override
+    public String toString() {
+        return "Node{value=" + value + "}";
+    }
 }
