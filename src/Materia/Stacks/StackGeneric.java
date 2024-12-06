@@ -1,47 +1,66 @@
 package materia.Stacks;
 
 import java.util.EmptyStackException;
-
 import materia.models.NodeGeneric;
 
-public class StackGeneric {
+public class StackGeneric<T> {
+    private NodeGeneric<T> top; // Nodo genérico que apunta al elemento superior
+    private int size; // Tamaño de la pila (O(1))
 
-    private NodeGeneric top; //Nodo Generico
-    private int size; //Variable tamanio 0(1)
-
-    //Crea una Pila instanciando el nodo top como null y el tamanio en 0
     public StackGeneric() {
         this.top = null;
         this.size = 0;
     }
-//Metodo para agregar un elemento a la pila
-public <T> void push(T data) {
-    NodeGeneric<T> newNode = new NodeGeneric<>(data);
-    newNode.setNext(top);
 
-    
-}
-
-//Metodo para retiar un elemento de la pila
-public T pop() {
-    if (isEmpaty()) {
-        throw new EmptyStackException();
+    public void push(T data) {
+        NodeGeneric<T> newNode = new NodeGeneric<>(data);
+        newNode.setNext(top); // El nuevo nodo apunta al actual top
+        top = newNode; // El nuevo nodo es ahora el top
+        size++; // Incrementar el tamaño
     }
-    T value = top.getValue();
-    top = top.getNext();
-    size--;
-    return value;
-}
-//Metodo que retorna el valor del node de la cima
-public T peek() {
-    if (isEmpaty()) {
-        throw new EmptyStackException();
+
+    public T pop() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+        T value = top.getValue(); //Obtener el valor del Nodo superior
+        top = top.getNext(); //Actualizar el top al siguiente Nodo
+        size--; //Decrementar el tamaño
+        return value;
     }
-    return top-getValue();
-}
 
-public boolean isEmpaty() {
-    return top == null;
-}
-}
+    public NodeGeneric<T> popNode() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+        NodeGeneric<T> currentTop = top; //Guardar referencia al nodo actual
+        top = top.getNext(); //Actualizar el top al siguiente nodo
+        size--; //Decrementar el tamaño
+        return currentTop;
+    }
 
+
+    public T peek() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+        return top.getValue();
+    }
+
+ 
+    public boolean isEmpty() {
+        return top == null;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void printStack() {
+        NodeGeneric<T> current = top; // Comenzar desde el tope
+        while (current != null) {
+            System.out.println(current.getValue());
+            current = current.getNext();
+        }
+    }
+}

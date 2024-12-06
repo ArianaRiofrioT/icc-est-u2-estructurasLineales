@@ -1,8 +1,8 @@
 package materia.models;
 
 public class Node {
-    private int value; 
-    private Node next; 
+    private int value; // Propiedad privada que almacena el valor del nodo
+    private Node next; // Propiedad privada que almacena la referencia al siguiente nodo
 
     // Constructor que inicializa el valor del nodo
     public Node(int value) {
