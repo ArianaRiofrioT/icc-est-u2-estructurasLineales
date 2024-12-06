@@ -18,11 +18,11 @@ public class Queue {
     public void enqueue(int value) {
         Node newNode = new Node(value); // Crear un nuevo nodo con el valor dado
         if (isEmpty()) {
-            front = newNode; // Si la cola está vacía, el nuevo nodo es el frente y el final
+            front = newNode; 
             rear = newNode;
         } else {
-            rear.setNext(newNode); // Enlazar el nuevo nodo al final de la cola
-            rear = newNode;        // Actualizar el nodo final
+            rear.setNext(newNode); 
+            rear = newNode;        
         }
         size++;
     }
