@@ -1,4 +1,5 @@
 import materia.Stacks.Stack;
+import materia.Stacks.StackGeneric;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -33,5 +34,22 @@ public class App {
         stack.printStack();
         System.out.println("Tamaño final de la pila: " + stack.getSize());
     }
+    public static void runStackGeneric() {
+        StackGeneric<Pantalla> router = new StackGeneric<>();
+        router.push(new Pantalla(id:1, nombre:"Home Page", ruta:"/home"));
+        router.push(new Pantalla(id:1, nombre:"Home Page", ruta:"/home/menu"));
+        router.push(new Pantalla(id:1, nombre:"Home Page", ruta:"/home/menu/users"));
+
+        System.out.println("Esto en " + router.peek().getRuta());
+        System.out.println("Regreso a " + router.pop());
+        System.out.println("Esto en " + router.peek().getRuta());
+
+        router.push(new Pantalla(id:1, nombre:"Settings Page", ruta:"/home/menu/settings"));
+
+        System.out.println("Pantallas = "m+ router.getSize());
+        System.out.println("Estoy en " + router.peek());
+        
+    }
+
 }
 
