@@ -57,7 +57,7 @@ public class StackGeneric<T> {
     }
 
     public void printStack() {
-        NodeGeneric<T> current = top; // Comenzar desde el tope
+        NodeGeneric<T> current = top; 
         while (current != null) {
             System.out.println(current.getValue());
             current = current.getNext();
