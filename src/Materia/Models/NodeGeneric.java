@@ -4,11 +4,13 @@ public class NodeGeneric<T> {
     private T value;
     private NodeGeneric<T> next;
 
+    // Constructor que inicializa el valor del nodo
     public NodeGeneric(T value) {
         this.value = value;
-        this.next = null; 
+        this.next = null; // Inicialmente, el siguiente nodo es nulo
     }
 
+    // Getters y Setters
     public T getValue() {
         return value;
     }

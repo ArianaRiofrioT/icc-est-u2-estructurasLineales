@@ -1,3 +1,4 @@
+import Controller.MenuController;
 import Models.Pantalla;
 import materia.Queues.Queue;
 import materia.Queues.QueueGenetic;
@@ -6,7 +7,18 @@ import materia.Stacks.StackGeneric;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        runQueueGeneric();
+        // Ejecutar ejemplos de Stack y StackGeneric
+        // runStack();
+        // runStackGeneric();
+        // runQueue();
+        //runQueueGeneric();
+        runContactManager();
+    }
+
+    public static void runContactManager() {
+        MenuController menuController = new MenuController();
+        menuController.showMenu();
+        
     }
 
     public static void runStack() {
