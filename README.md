@@ -1,18 +1,51 @@
-## Getting Started
+Ejercicio 01: Validación de Signos
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Esta implementación valida si una cadena de texto que contiene únicamente los caracteres (, ), [, ], {, y } tiene una estructura balanceada. Para que una cadena sea válida:
 
-## Folder Structure
+Todos los corchetes, paréntesis o llaves abiertas deben cerrarse en el orden correcto.
 
-The workspace contains two folders by default, where:
+Cada tipo de símbolo debe emparejarse correctamente (por ejemplo, ( con )).
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+Algoritmo
 
-## Dependency Management
+El algoritmo utiliza una estructura de datos tipo pila (Stack) para garantizar que los signos se cierren en el orden inverso al que fueron abiertos. La lógica es la siguiente:
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+Recorremos cada carácter de la cadena de entrada.
+
+Si el carácter es un signo de apertura ((, {, [), se inserta en la pila.
+
+Si el carácter es un signo de cierre (), }, ]), verificamos:
+
+La pila no debe estar vacía.
+
+El símbolo en la cima de la pila debe coincidir con el tipo de cierre.
+
+Al final del recorrido, la pila debe quedar vacía para que la cadena sea válida.
+
+
+
+Ejemplo de Uso
+
+Entrada Válida:
+
+([]){}
+
+Salida:
+
+La cadena es válida.
+
+Entrada Inválida:
+
+({)}
+
+Salida:
+
+La cadena es inválida.
+
+__________________________________________________________________________________________________________________________
+
+Beneficio
+
+Este enfoque garantiza una validación eficiente y precisa, ya que el tiempo de ejecución es lineal (), donde  es la longitud de la cadena. El uso de una pila asegura que el programa siga las reglas de apertura y cierre en orden correcto.
