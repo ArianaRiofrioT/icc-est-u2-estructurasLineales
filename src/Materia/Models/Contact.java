@@ -31,7 +31,6 @@ public class Contact<T, U> {
     }
 
     public static NodeGeneric<Contact<?, ?>> getHead() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getHead'");
     }
 }
