@@ -1,51 +1,50 @@
-Ejercicio 01: Validación de Signos
+VALIDACIÓN DE SIGNOS Y ORDENAMIENTO DE STACK
 
-Esta implementación valida si una cadena de texto que contiene únicamente los caracteres (, ), [, ], {, y } tiene una estructura balanceada. Para que una cadena sea válida:
+Este repositorio contiene dos ejercicios implementados en Java que hacen uso de estructuras de datos como pilas (Stack) para resolver problemas comunes de validación y ordenación.
 
-Todos los corchetes, paréntesis o llaves abiertas deben cerrarse en el orden correcto.
+---
 
-Cada tipo de símbolo debe emparejarse correctamente (por ejemplo, ( con )).
+## Ejercicio 1: `SignValidator`
 
+Este programa valida si una cadena de texto contiene signos de apertura y cierre correctamente balanceados. Los signos considerados son:
 
+- Paréntesis: `()`
+- Llaves: `{}`
+- Corchetes: `[]`
+- Ángulos: `<>`
 
-Algoritmo
+**Uso del código:**
+1. El método principal es `isValid(String s)`, que toma como entrada una cadena.
+2. Se utiliza una pila para mantener los signos de apertura.
+3. Cuando se encuentra un signo de cierre, se verifica si coincide con el último signo de apertura almacenado en la pila.
+4. Al final, si la pila está vacía, significa que todos los signos están balanceados correctamente.
 
-El algoritmo utiliza una estructura de datos tipo pila (Stack) para garantizar que los signos se cierren en el orden inverso al que fueron abiertos. La lógica es la siguiente:
-
-Recorremos cada carácter de la cadena de entrada.
-
-Si el carácter es un signo de apertura ((, {, [), se inserta en la pila.
-
-Si el carácter es un signo de cierre (), }, ]), verificamos:
-
-La pila no debe estar vacía.
-
-El símbolo en la cima de la pila debe coincidir con el tipo de cierre.
-
-Al final del recorrido, la pila debe quedar vacía para que la cadena sea válida.
-
-
-
-Ejemplo de Uso
-
-Entrada Válida:
-
-([]){}
-
-Salida:
-
-La cadena es válida.
-
-Entrada Inválida:
-
-({)}
-
-Salida:
-
-La cadena es inválida.
-
+**Ejemplo de ejecución:**
+```java
+Input: "{[()]}"   => Output: true
+Input: "{(})"     => Output: false
+```
 __________________________________________________________________________________________________________________________
 
-Beneficio
+## Ejercicio 2: `StackSorter`
 
-Este enfoque garantiza una validación eficiente y precisa, ya que el tiempo de ejecución es lineal (), donde  es la longitud de la cadena. El uso de una pila asegura que el programa siga las reglas de apertura y cierre en orden correcto.
+**Descripción:**
+Este programa implementa un algoritmo para ordenar una pila (Stack) de números enteros de manera que los valores menores queden en la parte superior.
+
+**Uso del código:**
+1. El método principal es `sortStack(Stack<Integer> stack)`, que toma como entrada una pila desordenada.
+2. Se utiliza una pila temporal para almacenar los elementos en orden.
+3. Los elementos de la pila original se reorganizan hasta que estén completamente ordenados.
+4. Finalmente, los elementos ordenados se copian de vuelta a la pila original.
+
+**Ejemplo de ejecución:**
+```java
+Stack original: [5, 1, 4, 2, 3]
+Stack ordenado: [1, 2, 3, 4, 5]
+```
+
+
+___________-----------------------_______________________________----------------------_________________________________
+
+- Ambos programas hacen un uso eficiente de las pilas para resolver problemas prácticos.
+- Se recomienda familiarizarse con la clase `Stack` de Java para comprender mejor la implementación.
