@@ -1,72 +1,77 @@
 package Controller;
 
-import Views.ConsoleView;
 import materia.models.Contact;
+import java.util.Scanner;
 
 public class MenuController {
     private ContactManager contactManager;
-    private ConsoleView consoleView;
+    private Scanner scanner;
 
     public MenuController() {
-        this.contactManager = new ContactManager();
-        this.consoleView = new ConsoleView();
+        contactManager = new ContactManager();
+        scanner = new Scanner(System.in);
     }
 
     public void showMenu() {
-        boolean exit = false;
-        while (!exit) {
-            consoleView.displayMenu();
-            String option = consoleView.getInput("Choose an option: ");
+        int option;
+        do {
+            System.out.println("\n--- Contact Manager Menu ---");
+            System.out.println("1. Add Contact");
+            System.out.println("2. Print Contacts");
+            System.out.println("3. Find Contact");
+            System.out.println("4. Delete Contact");
+            System.out.println("5. Exit");
+            System.out.print("Choose an option: ");
+            
+            option = scanner.nextInt();
+            scanner.nextLine(); 
+
             switch (option) {
-                case "1":
+                case 1:
                     addContact();
                     break;
-                case "2":
+                case 2:
+                    contactManager.printList();
+                    break;
+                case 3:
                     findContact();
                     break;
-                case "3":
+                case 4:
                     deleteContact();
                     break;
-                case "4":
-                    printList();
-                    break;
-                case "5":
-                    exit = true;
-                    consoleView.showMessage("Exiting...");
+                case 5:
+                    System.out.println("Exiting...");
                     break;
                 default:
-                    consoleView.showMessage("Invalid option!");
-                    break;
+                    System.out.println("Invalid option - Try again.");
             }
-        }
+        } while (option != 5);
     }
 
     private void addContact() {
-        String name = consoleView.getInput("Enter name: ");
-        String phone = consoleView.getInput("Enter phone: ");
-        Contact<String, String> contact = new Contact<>(name, phone);
-        contactManager.addContact(contact);
-        consoleView.showMessage("Contact added successfully.");
+        System.out.print("Enter contact name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter contact phone: ");
+        String phone = scanner.nextLine();
+        contactManager.addContact(new Contact<>(name, phone));
+        System.out.println("Contact added successfully!");
     }
 
     private void findContact() {
-        String name = consoleView.getInput("Enter a name to search: ");
+        System.out.print("Enter the name to search: ");
+        String name = scanner.nextLine();
         Contact<?, ?> contact = contactManager.findContactByName(name);
         if (contact != null) {
-            consoleView.showMessage("Contact found: " + contact);
-        }else {
-            consoleView.showMessage("Contact not found.");
+            System.out.println("Contact found: " + contact);
+        } else {
+            System.out.println("Contact not found.");
         }
     }
 
     private void deleteContact() {
-        String name = consoleView.getInput("Enter a name to delete: ");
+        System.out.print("Enter the name to delete: ");
+        String name = scanner.nextLine();
         contactManager.deleteContactByName(name);
-        consoleView.showMessage("Contact deleted if it existed");
-    }
-
-    private void printList() {
-        consoleView.showMessage("Contact List:");
-        contactManager.printList();
+        System.out.println("Contact deleted.");
     }
 }

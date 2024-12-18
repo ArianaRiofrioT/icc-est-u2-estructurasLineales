@@ -1,8 +1,8 @@
 package materia.models;
 
-public class LinkedList<T> {
-    private NodeGeneric<T> head; // Reference to the first node
-    private int size = 0; // Counter for the number of nodes
+public class LinkedList<T> { // Clase genérica con T como parámetro
+    private NodeGeneric<T> head;
+    private int size = 0;
 
     public void appendToTail(T value) {
         if (head == null) {
@@ -34,7 +34,15 @@ public class LinkedList<T> {
         return head;
     }
 
+    public void setHead(NodeGeneric<T> head) { // Necesario para deleteContact
+        this.head = head;
+    }
+
     public int getSize() {
         return size;
+    }
+
+    public void setSize(int size) { // Necesario para deleteContact
+        this.size = size;
     }
 }

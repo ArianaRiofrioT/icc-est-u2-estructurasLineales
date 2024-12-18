@@ -26,34 +26,37 @@ public class ContactManager {
     public Contact<?, ?> findContactByName(String name) {
         NodeGeneric<Contact<?, ?>> current = contacts.getHead();
         while (current != null) {
-            if (((String) (current.getValue().getName())).equalsIgnoreCase(name)) {
+            if (current.getValue() != null && current.getValue().getName() != null &&
+                ((String) current.getValue().getName()).equalsIgnoreCase(name)) {
                 return current.getValue();
             }
             current = current.getNext();
         }
-        return null; // No se encontró el contacto
+        return null; // No encontrado
     }
 
     public void deleteContactByName(String name) {
         NodeGeneric<Contact<?, ?>> current = contacts.getHead();
 
         if (current == null) {
-            return; // No hay contactos en la lista
-        }
-
-        // Caso 1: El contacto es la cabeza de la lista
-        if (((String) (current.getValue().getName())).equalsIgnoreCase(name)) {
-            contacts.setHead(current.getNext());
-            contacts.setSize(contacts.getSize() - 1); // Actualizar el tamaño
             return;
         }
 
-        // Caso 2: El contacto está en el medio o al final
+        // Caso 1: el contacto es la cabeza
+        if (current.getValue() != null && current.getValue().getName() != null &&
+            ((String) current.getValue().getName()).equalsIgnoreCase(name)) {
+            contacts.setHead(current.getNext());
+            contacts.setSize(contacts.getSize() - 1);
+            return;
+        }
+
+        // Caso 2: el contacto está en el resto
         while (current.getNext() != null) {
-            if (((String) (current.getNext().getValue().getName())).equalsIgnoreCase(name)) {
+            if (current.getNext().getValue() != null && current.getNext().getValue().getName() != null &&
+                ((String) current.getNext().getValue().getName()).equalsIgnoreCase(name)) {
                 current.setNext(current.getNext().getNext());
-                contacts.setSize(contacts.getSize() - 1); // Actualizar el tamaño
-                return; // Ya encontramos y eliminamos el contacto
+                contacts.setSize(contacts.getSize() - 1);
+                return;
             }
             current = current.getNext();
         }

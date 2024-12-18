@@ -1,60 +1,87 @@
-import Controller.MenuController;
-import Ejercicio_01_sing.SignValidator;
+import Ejercicio_01_sign.SignValidator;
 import Ejercicio_02_sorting.StackSorter;
-
-import java.util.Scanner;
-import java.util.Stack;
+import Models.Pantalla;
+import materia.Queues.Queue;
+import materia.Queues.QueueGenetic;
+import materia.Stacks.Stack; 
+import materia.Stacks.StackGeneric;
 
 public class App {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        boolean running = true;
+        System.out.println("Iniciando aplicación principal...");
+        runSignValidator();
+        runStackSorter();
+        // Las siguientes llamadas están comentadas para evitar su ejecución
+        // pero el código se mantiene disponible.
+        // runStack();
+        // runStackGeneric();
+        // runQueue();
+        // runQueueGeneric();
+    }
+    public static void runSignValidator() {
+        System.out.println("\n--- Validación de Signos ---");
+        String input1 = "{[()]}";
+        String input2 = "{(})";
 
-        while (running) {
-            System.out.println("\n=== Menú Principal ===");
-            System.out.println("1. Gestión de Contactos");
-            System.out.println("2. Validación de Signos");
-            System.out.println("3. Ordenar una Pila");
-            System.out.println("4. Salir");
-            System.out.print("Elige una opción: ");
-
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume el salto de línea
-
-            switch (choice) {
-                case 1:
-                    runContactManager();
-                    break;
-                case 2:
-                    System.out.print("Ingresa la cadena para validar: ");
-                    String input = scanner.nextLine();
-                    boolean isValid = SignValidator.isValid(input);
-                    System.out.println("La cadena es " + (isValid ? "válida." : "inválida."));
-                    break;
-                case 3:
-                    Stack<Integer> stack = new Stack<>();
-                    System.out.print("Ingresa números separados por espacios: ");
-                    String[] numbers = scanner.nextLine().split(" ");
-                    for (String num : numbers) {
-                        stack.push(Integer.parseInt(num));
-                    }
-                    Stack<Integer> sortedStack = StackSorter.sortStack(stack);
-                    System.out.println("Pila ordenada (tope a fondo): " + sortedStack);
-                    break;
-                case 4:
-                    System.out.println("Saliendo del programa.");
-                    running = false;
-                    break;
-                default:
-                    System.out.println("Opción inválida. Intenta de nuevo.");
-            }
-        }
-
-        scanner.close();
+        System.out.println("Input: " + input1 + " => Output: " + SignValidator.isValid(input1)); // true
+        System.out.println("Input: " + input2 + " => Output: " + SignValidator.isValid(input2)); // false
     }
 
-    public static void runContactManager() {
-        MenuController menuController = new MenuController();
-        menuController.showMenu();
+    public static void runStackSorter() {
+        System.out.println("\n--- Ordenar un Stack ---");
+        java.util.Stack<Integer> javaStack = new java.util.Stack<>();
+
+        javaStack.push(5);
+        javaStack.push(1);
+        javaStack.push(4);
+        javaStack.push(2);
+        javaStack.push(3);
+
+        System.out.println("Stack original: " + javaStack);
+        StackSorter.sortStack(javaStack);
+        System.out.println("Stack ordenado: " + javaStack);
+    }
+
+    public static void runStack() {
+    
+        System.out.println("\n--- Stack Personalizado ---");
+        Stack stack = new Stack();
+        stack.push(10);
+        stack.push(5);
+        stack.push(7);
+        stack.push(15);
+        stack.push(20);
+        stack.printStack();
+        System.out.println("Cima actual -> " + stack.peek());
+    }
+
+    public static void runStackGeneric() {
+        
+        System.out.println("\n--- Stack Genérico ---");
+        StackGeneric<Pantalla> router = new StackGeneric<>();
+        router.push(new Pantalla(1, "Home Page", "/home"));
+        router.push(new Pantalla(2, "Menu Page", "/home/menu"));
+        router.push(new Pantalla(3, "Users Page", "/home/menu/users"));
+        System.out.println("Estoy en: " + router.peek().getRuta());
+    }
+
+    public static void runQueue() {
+        
+        System.out.println("\n--- Queue Personalizada ---");
+        Queue cola = new Queue();
+        cola.enqueue(10);
+        cola.enqueue(20);
+        cola.enqueue(30);
+        cola.enqueue(40);
+        System.out.println("Frente de la cola: " + cola.peek());
+    }
+
+    public static void runQueueGeneric() {
+        
+        System.out.println("\n--- Queue Genérica ---");
+        QueueGenetic<Pantalla> queue = new QueueGenetic<>();
+        queue.enqueue(new Pantalla(1, "Inicio", "/inicio"));
+        queue.enqueue(new Pantalla(2, "Configuración", "/config"));
+        queue.printQueue();
     }
 }

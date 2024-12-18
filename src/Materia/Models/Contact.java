@@ -29,8 +29,4 @@ public class Contact<T, U> {
     public String toString() {
         return "Name: " + name + ", Phone: " + phone;
     }
-
-    public static NodeGeneric<Contact<?, ?>> getHead() {
-        throw new UnsupportedOperationException("Unimplemented method 'getHead'");
-    }
 }
